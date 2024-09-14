@@ -1,7 +1,6 @@
 Calculator update
 ---
 <img src="Logotype primary.png" width="60%" height="60%" />
-Update again
 Created with *create-react-app*. See the [full create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 
