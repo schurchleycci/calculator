@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           name: Plan a release
-          command: circleci run release plan --target-version='v1.2.3' --environment='aaa'
+          command: circleci run release plan --target-version='v1.2.3' --environment-name='aaa'
       - run:
           name: Update a release
           command: circleci run release update --status=SUCCESS
