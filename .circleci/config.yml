@@ -5,8 +5,14 @@ jobs:
     docker:
       - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
-      - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run: uuid=$(uuidgen)
+      - run: echo $uuid
+      - run:
+          name: Plan a release
+          command: circleci run release plan --target-version=<$uuid>
+      - run:
+          name: Update a release
+          command: circleci run release update --status=SUCCESS
 
 workflows:
   my-workflow:
