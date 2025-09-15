@@ -16,3 +16,7 @@ workflows:
   my-workflow:
     jobs:
       - hello-job
+      - hold:
+          type: approval
+          requires:
+            - hello-job
