@@ -4,8 +4,6 @@ Calculator update
 
 
 
-Try It
----
 
 
 
