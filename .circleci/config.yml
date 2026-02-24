@@ -1,22 +1,25 @@
 version: 2.1
 
 jobs:
-  hello-job:
+  diff-to-artifact:
     docker:
-      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
+      - image: cimg/base:stable
     steps:
+      - checkout
       - run:
-          name: Plan a release
-          command: circleci run release plan --target-version='v1.2.3' --environment-name='aaa'
-      - run:
-          name: Update a release
-          command: circleci run release update --status=SUCCESS
+          name: Generate git diff
+          command: |
+            git fetch origin main
+            git diff origin/main...HEAD > /tmp/branch.diff
+      - store_artifacts:
+          path: /tmp/branch.diff
+          destination: branch.diff
 
 workflows:
   my-workflow:
     jobs:
-      - hello-job
+      - diff-to-artifact
       - hold:
           type: approval
           requires:
-            - hello-job
+            - diff-to-artifact
